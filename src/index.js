@@ -20,7 +20,7 @@ const middleware = compose([
   koaBody(),
   statics(path.join(__dirname, '../public')),
   cors({
-    origin: 'http://localhost:3001',    // 前端地址
+    origin: 'http://localhost:8080',    // 前端地址
     credentials: true   
   }),
   jsonutil({ pretty: false, param: 'pretty' }),

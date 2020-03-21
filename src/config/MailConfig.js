@@ -1,45 +1,38 @@
 import nodemailer from 'nodemailer'
+import { emailConfig } from './index'
 
 // async..await is not allowed in global scope, must use a wrapper
-async function send(sendInfo) {
+async function send(a) {
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
   // let testAccount = await nodemailer.createTestAccount()
 
   // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.qq.com',
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: 'imoocbrian@qq.com', // generated ethereal user
-      pass: 'rbkcbxwrurygjfca', // generated ethereal password
-    },
-  })
+  let transporter = nodemailer.createTransport(emailConfig)
 
-  // let sendInfo = {
-  //   code: '1234',
-  //   expire: '2019-10-01',
-  //   email: 'imoocbrian@qq.com',
-  //   user: 'Brian',
-  // }
+  let sendInfo = {
+    code: '1234',
+    expire: '2019-10-01',
+    email: '576303283@qq.com',
+    user: '趴熊',
+  }
 
   let url = 'http://www.imooc.com'
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"认证邮件" <imoocbrian@qq.com>', // sender address
+    from: '"认证邮件" <576303283@qq.com>', // sender address
     to: sendInfo.email, // list of receivers
     subject:
       sendInfo.user !== ''
-        ? `你好开发者，${sendInfo.user}！《慕课网前端全栈实践》注册码`
-        : '《慕课网前端全栈实践》注册码', // Subject line
-    text: `您在《慕课网前端全栈实践》课程中注册，您的邀请码是${
+        ? `你好开发者，${sendInfo.user}！《趴熊论坛》注册码`
+        : '《趴熊论坛》注册码', // Subject line
+    text: `您在《趴熊论坛》中注册，您的邀请码是${
       sendInfo.code
     },邀请码的过期时间: ${sendInfo.expire}`, // plain text body
     html: `
         <div style="border: 1px solid #dcdcdc;color: #676767;width: 600px; margin: 0 auto; padding-bottom: 50px;position: relative;">
-        <div style="height: 60px; background: #393d49; line-height: 60px; color: #58a36f; font-size: 18px;padding-left: 10px;">Imooc社区——欢迎来到官方社区</div>
+        <div style="height: 60px; background: #393d49; line-height: 60px; color: #58a36f; font-size: 18px;padding-left: 10px;">趴熊社区——欢迎来到官方社区</div>
         <div style="padding: 25px">
           <div>您好，${sendInfo.user}童鞋，重置链接有效时间30分钟，请在${
       sendInfo.expire

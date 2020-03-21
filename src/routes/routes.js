@@ -1,6 +1,6 @@
 import combineRoutes from 'koa-combine-routers'
 
-import publicRouter from './publicRouter'
-import loginRouter from './loginRouter'
+import vcodeRouter from './vcodeRouter'
+import emailRouter from './emailRouter'
 
-export default combineRoutes(publicRouter, loginRouter)
+export default combineRoutes(vcodeRouter, emailRouter)

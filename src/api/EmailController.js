@@ -1,7 +1,7 @@
 import send from '../config/MailConfig'
 import moment from 'moment'
 
-class LoginController {
+class EmailController {
   constructor() {}
   async forget(ctx) {
     const { body } = ctx.request
@@ -27,4 +27,4 @@ class LoginController {
   }
 }
 
-export default new LoginController()
+export default new EmailController()
